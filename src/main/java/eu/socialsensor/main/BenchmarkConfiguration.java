@@ -11,8 +11,8 @@ import java.util.TreeSet;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.math3.util.CombinatoricsUtils;
 
-import com.amazon.titan.diskstorage.dynamodb.BackendDataModel;
-import com.amazon.titan.diskstorage.dynamodb.Constants;
+//import com.amazon.titan.diskstorage.dynamodb.BackendDataModel;
+//import com.amazon.titan.diskstorage.dynamodb.Constants;
 import com.google.common.primitives.Ints;
 import com.thinkaurelius.titan.graphdb.configuration.GraphDatabaseConfiguration;
 
@@ -43,13 +43,13 @@ public class BenchmarkConfiguration
     private static final String GRAPHITE_HOSTNAME = GraphDatabaseConfiguration.GRAPHITE_HOST.getName();
 
     // DynamoDB Storage Backend for Titan specific configuration
-    private static final String CONSTRUCTOR_ARGS = Constants.DYNAMODB_CREDENTIALS_CONSTRUCTOR_ARGS.getName();
-    private static final String CLASS_NAME = Constants.DYNAMODB_CREDENTIALS_CLASS_NAME.getName();
-    private static final String CONSISTENT_READ = Constants.DYNAMODB_FORCE_CONSISTENT_READ.getName();
-    private static final String TPS = "tps";
-    private static final String CREDENTIALS = Constants.DYNAMODB_CLIENT_CREDENTIALS_NAMESPACE.getName();
-    private static final String ENDPOINT = Constants.DYNAMODB_CLIENT_ENDPOINT.getName();
-    private static final String TABLE_PREFIX = Constants.DYNAMODB_TABLE_PREFIX.getName();
+//    private static final String CONSTRUCTOR_ARGS = Constants.DYNAMODB_CREDENTIALS_CONSTRUCTOR_ARGS.getName();
+//    private static final String CLASS_NAME = Constants.DYNAMODB_CREDENTIALS_CLASS_NAME.getName();
+//    private static final String CONSISTENT_READ = Constants.DYNAMODB_FORCE_CONSISTENT_READ.getName();
+//    private static final String TPS = "tps";
+//    private static final String CREDENTIALS = Constants.DYNAMODB_CLIENT_CREDENTIALS_NAMESPACE.getName();
+//    private static final String ENDPOINT = Constants.DYNAMODB_CLIENT_ENDPOINT.getName();
+//    private static final String TABLE_PREFIX = Constants.DYNAMODB_TABLE_PREFIX.getName();
 
     // benchmark configuration
     private static final String DATASET = "dataset";
@@ -84,9 +84,9 @@ public class BenchmarkConfiguration
     private final long graphiteReportingInterval;
 
     // storage backend specific settings
-    private final long dynamodbTps;
-    private final BackendDataModel dynamodbDataModel;
-    private final boolean dynamodbConsistentRead;
+//    private final long dynamodbTps;
+//    private final BackendDataModel dynamodbDataModel;
+//    private final boolean dynamodbConsistentRead;
     private final Boolean orientLightweightEdges;
     private final String sparkseeLicenseKey;
 
@@ -102,30 +102,30 @@ public class BenchmarkConfiguration
     private final File actualCommunities;
     private final boolean permuteBenchmarks;
     private final int scenarios;
-    private final String dynamodbCredentialsFqClassName;
-    private final String dynamodbCredentialsCtorArguments;
-    private final String dynamodbEndpoint;
+//    private final String dynamodbCredentialsFqClassName;
+//    private final String dynamodbCredentialsCtorArguments;
+//    private final String dynamodbEndpoint;
     private final int bufferSize;
     private final int blocksize;
     private final int pageSize;
-    private final int dynamodbWorkerThreads;
-    private final boolean dynamodbPrecreateTables;
-    private final String dynamodbTablePrefix;
+//    private final int dynamodbWorkerThreads;
+//    private final boolean dynamodbPrecreateTables;
+//    private final String dynamodbTablePrefix;
 
-    public String getDynamodbCredentialsFqClassName()
-    {
-        return dynamodbCredentialsFqClassName;
-    }
-
-    public String getDynamodbCredentialsCtorArguments()
-    {
-        return dynamodbCredentialsCtorArguments;
-    }
-
-    public String getDynamodbEndpoint()
-    {
-        return dynamodbEndpoint;
-    }
+//    public String getDynamodbCredentialsFqClassName()
+//    {
+//        return dynamodbCredentialsFqClassName;
+//    }
+//
+//    public String getDynamodbCredentialsCtorArguments()
+//    {
+//        return dynamodbCredentialsCtorArguments;
+//    }
+//
+//    public String getDynamodbEndpoint()
+//    {
+//        return dynamodbEndpoint;
+//    }
 
     public BenchmarkConfiguration(Configuration appconfig)
     {
@@ -148,21 +148,21 @@ public class BenchmarkConfiguration
         this.csvReportingInterval = metrics.getLong(CSV_INTERVAL, 1000 /*ms*/);
         this.csvDir = csv.containsKey(CSV_DIR) ? new File(csv.getString(CSV_DIR, System.getProperty("user.dir") /*default*/)) : null;
 
-        Configuration dynamodb = socialsensor.subset("dynamodb");
-        this.dynamodbWorkerThreads = dynamodb.getInt("workers", 25);
-        Configuration credentials = dynamodb.subset(CREDENTIALS);
-        this.dynamodbPrecreateTables = dynamodb.getBoolean("precreate-tables", Boolean.FALSE);
-        this.dynamodbTps = Math.max(1, dynamodb.getLong(TPS, 750 /*default*/));
-        this.dynamodbConsistentRead = dynamodb.containsKey(CONSISTENT_READ) ? dynamodb.getBoolean(CONSISTENT_READ)
-            : false;
-        this.dynamodbDataModel = dynamodb.containsKey("data-model") ? BackendDataModel.valueOf(dynamodb
-            .getString("data-model")) : null;
-        this.dynamodbCredentialsFqClassName = credentials.containsKey(CLASS_NAME) ? credentials.getString(CLASS_NAME)
-            : null;
-        this.dynamodbCredentialsCtorArguments = credentials.containsKey(CONSTRUCTOR_ARGS) ? credentials
-            .getString(CONSTRUCTOR_ARGS) : null;
-        this.dynamodbEndpoint = dynamodb.containsKey(ENDPOINT) ? dynamodb.getString(ENDPOINT) : null;
-        this.dynamodbTablePrefix = dynamodb.containsKey(TABLE_PREFIX) ? dynamodb.getString(TABLE_PREFIX) : Constants.DYNAMODB_TABLE_PREFIX.getDefaultValue();
+//        Configuration dynamodb = socialsensor.subset("dynamodb");
+//        this.dynamodbWorkerThreads = dynamodb.getInt("workers", 25);
+//        Configuration credentials = dynamodb.subset(CREDENTIALS);
+//        this.dynamodbPrecreateTables = dynamodb.getBoolean("precreate-tables", Boolean.FALSE);
+//        this.dynamodbTps = Math.max(1, dynamodb.getLong(TPS, 750 /*default*/));
+//        this.dynamodbConsistentRead = dynamodb.containsKey(CONSISTENT_READ) ? dynamodb.getBoolean(CONSISTENT_READ)
+//            : false;
+//        this.dynamodbDataModel = dynamodb.containsKey("data-model") ? BackendDataModel.valueOf(dynamodb
+//            .getString("data-model")) : null;
+//        this.dynamodbCredentialsFqClassName = credentials.containsKey(CLASS_NAME) ? credentials.getString(CLASS_NAME)
+//            : null;
+//        this.dynamodbCredentialsCtorArguments = credentials.containsKey(CONSTRUCTOR_ARGS) ? credentials
+//            .getString(CONSTRUCTOR_ARGS) : null;
+//        this.dynamodbEndpoint = dynamodb.containsKey(ENDPOINT) ? dynamodb.getString(ENDPOINT) : null;
+//        this.dynamodbTablePrefix = dynamodb.containsKey(TABLE_PREFIX) ? dynamodb.getString(TABLE_PREFIX) : Constants.DYNAMODB_TABLE_PREFIX.getDefaultValue();
 
         Configuration orient = socialsensor.subset("orient");
         orientLightweightEdges = orient.containsKey(LIGHTWEIGHT_EDGES) ? orient.getBoolean(LIGHTWEIGHT_EDGES) : null;
@@ -310,20 +310,20 @@ public class BenchmarkConfiguration
         return resultsPath;
     }
 
-    public long getDynamodbTps()
-    {
-        return dynamodbTps;
-    }
-
-    public boolean dynamodbConsistentRead()
-    {
-        return dynamodbConsistentRead;
-    }
-
-    public BackendDataModel getDynamodbDataModel()
-    {
-        return dynamodbDataModel;
-    }
+//    public long getDynamodbTps()
+//    {
+//        return dynamodbTps;
+//    }
+//
+//    public boolean dynamodbConsistentRead()
+//    {
+//        return dynamodbConsistentRead;
+//    }
+//
+//    public BackendDataModel getDynamodbDataModel()
+//    {
+//        return dynamodbDataModel;
+//    }
 
     public List<BenchmarkType> getBenchmarkTypes()
     {
@@ -385,7 +385,7 @@ public class BenchmarkConfiguration
         File file = new File(fileName);
         if (!file.exists())
         {
-            throw new IllegalArgumentException(String.format("the %s does not exist", fileType));
+            throw new IllegalArgumentException(String.format("the %s does not exist at path %s", fileType, fileName));
         }
 
         if (!(file.isFile() && file.canRead()))
@@ -434,21 +434,21 @@ public class BenchmarkConfiguration
     {
         return pageSize;
     }
-
-    public int getDynamodbWorkerThreads()
-    {
-        return dynamodbWorkerThreads;
-    }
-
-    public boolean getDynamodbPrecreateTables()
-    {
-        return dynamodbPrecreateTables;
-    }
-
-    public String getDynamodbTablePrefix()
-    {
-        return dynamodbTablePrefix;
-    }
+//
+//    public int getDynamodbWorkerThreads()
+//    {
+//        return dynamodbWorkerThreads;
+//    }
+//
+//    public boolean getDynamodbPrecreateTables()
+//    {
+//        return dynamodbPrecreateTables;
+//    }
+//
+//    public String getDynamodbTablePrefix()
+//    {
+//        return dynamodbTablePrefix;
+//    }
 
     public boolean publishCsvMetrics()
     {

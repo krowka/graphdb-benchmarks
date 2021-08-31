@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.socialsensor</groupId>
     <artifactId>graphdb-benchmarks</artifactId>
@@ -55,7 +55,7 @@
         <titan.version>0.5.4</titan.version>
         <hbase.version>0.98.8-hadoop2</hbase.version>
         <neo4j.version>2.0.1</neo4j.version>
-        <dynamodb.titan.version>1.0.0</dynamodb.titan.version>
+        <dynamodb.titan.version>1.0.1</dynamodb.titan.version>
         <log4j2.version>2.1</log4j2.version>
         <maven.surefire.version>2.18.1</maven.surefire.version>
         <jdk.version>1.8</jdk.version>
@@ -237,20 +237,20 @@
             <artifactId>hbase-client</artifactId>
             <version>${hbase.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>dynamodb-titan054-storage-backend</artifactId>
-            <version>${dynamodb.titan.version}</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.amazonaws</groupId>-->
+        <!--            <artifactId>dynamodb-titan054-storage-backend</artifactId>-->
+        <!--            <version>1.0.1</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>com.sparsity</groupId>
             <artifactId>sparkseejava</artifactId>
             <version>5.0.0</version>
         </dependency>
         <dependency>
-           <groupId>com.tinkerpop.blueprints</groupId>
-           <artifactId>blueprints-sparksee-graph</artifactId>
-           <version>${blueprints.version}</version>
+            <groupId>com.tinkerpop.blueprints</groupId>
+            <artifactId>blueprints-sparksee-graph</artifactId>
+            <version>${blueprints.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -364,6 +364,9 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven.surefire.version}</version>
                     <configuration>
+                        <!--                        <forkCount>3</forkCount>-->
+                        <!--                        <reuseForks>true</reuseForks>-->
+                        <!--                        <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>-->
                         <skip>true</skip>
                     </configuration>
                 </plugin>
@@ -434,7 +437,7 @@
                                     </includes>
                                     <skip>false</skip>
                                     <systemPropertyVariables>
-                                        <log4j.configurationFile>${basedir}/src/test/resources/META-INF/log4j2.xml</log4j.configurationFile>
+                                        <log4j.configurationFile>file://${basedir}/src/test/resources/META-INF/log4j2.xml</log4j.configurationFile>
                                     </systemPropertyVariables>
                                 </configuration>
                             </execution>

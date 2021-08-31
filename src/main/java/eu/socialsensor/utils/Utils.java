@@ -183,6 +183,7 @@ public class Utils
     {
         final GraphDatabase<?,?,?,?> graphDatabase;
         final File dbStorageDirectory = generateStorageDirectory(type, config.getDbStorageDirectory());
+        System.out.println(type);
         if (GraphDatabaseType.TITAN_FLAVORS.contains(type))
         {
             graphDatabase = new TitanGraphDatabase(type, config, dbStorageDirectory);
